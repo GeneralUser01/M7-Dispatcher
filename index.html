@@ -9,19 +9,27 @@
 </head>
 <body>
     <div class="row">
-        <div class="column" style="align-self: center; font-size: 1vw; position: absolute;">
+        <div class="column" style="align-self: center; font-size: 1vw; width: 13vw;">
             <input type="number">
             <button id="btn-workload">Change workload/cycle</button>
         </div>
     <h1>Batch</h1>
+    <div class="column" style="align-self: center; font-size: 1vw; width: 13vw;">
+        <input type="number" placeholder="Random task amount">
+        <button id="btn-workload">Add random tasks</button>
+    </div>
     </div>
     <div class="column">
-        <div class="row">
-            <input class="content-width-spacing" id="cpu-1-input" type="text" placeholder="X Y Z or X,Y,Z">
-            <input class="content-width-spacing" id="cpu-2-input" type="text" placeholder="X Y Z or X,Y,Z">
-            <input class="content-width-spacing" id="cpu-3-input" type="text" placeholder="X Y Z or X,Y,Z">
+        <input id="cpu-input-all" type="text" placeholder="X Y Z or X,Y,Z (X = process name, Y = task time and Z = priority)">
+        <div class="column">
+            <div class="row">
+                <input class="content-width-spacing" id="cpu-1-input" type="text" placeholder="X Y Z or X,Y,Z">
+                <input class="content-width-spacing" id="cpu-2-input" type="text" placeholder="X Y Z or X,Y,Z">
+                <input class="content-width-spacing" id="cpu-3-input" type="text" placeholder="X Y Z or X,Y,Z">
+            </div>
         </div>
         <button id="btn-dispatch">Dispatch</button>
+    </div>
         <div class="row">
             <div class="column content-width-spacing">
                 <span id="cpu-1">CPU 1</span> <br>
@@ -143,5 +151,6 @@ const myChart = new Chart(ctx, {
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="dispatcher.js"></script>
 </body>
 </html>
