@@ -1,0 +1,116 @@
+html {
+    background: linear-gradient(70deg,rgb(8, 16, 117), rgb(2, 6, 55));
+    color: rgb(255, 255, 255);
+}
+
+body, input {
+    text-align: center;
+}
+
+input {
+    border-bottom-width: thin;
+    border-radius: 0;
+}
+input[type="number"] {    
+    appearance: textfield;
+}
+input[type="text"] {
+    font-size: 1.2vw;
+}
+input, button {
+    background: linear-gradient(#262626,#eaeaea,#262626);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    caret-color: rgb(185, 185, 185);
+}
+::placeholder {
+    opacity: 0.85;
+}
+button {
+    border-top-width: thin;
+}
+
+#btn-dispatch {
+    font-size: 1.5vw;
+}
+#btn-workload {
+    font-size: 1.15vw;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.content-width-spacing {
+    width: 33.33%;
+    width: calc(100% / 3);
+    text-align: center;
+}
+
+.name-space {
+    width: 65%;
+}
+
+h1 {
+    background: linear-gradient(#262626,#eaeaea,#262626);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+}
+
+label {
+    text-align: start;
+}
+
+.split-line {
+    border-style: solid;
+    border-width: thin;
+    border-color: rgb(150, 150, 150);
+    height: 84vh;
+
+    margin-left: 0.7%;
+    margin-right: 0.7%;
+}
+
+#cpu-1 {
+    color: rgb(200, 25, 30);
+}
+#cpu-2 {
+    /*color: rgb(125, 79, 255);*/
+    /*background: linear-gradient(rgb(125, 79, 255), rgb(141, 76, 255));*/
+    /*background: linear-gradient(#24e6e9, #134679);*/
+    background: linear-gradient(#b9dcef, #799bca);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+#cpu-3 {
+    color: rgb(35, 204, 31)
+}
+
+.name {
+    border-style: solid;
+    border-width: thin;
+    border-color: white; 
+    width: 65%;
+}
+.time {
+    border-style: solid;
+    border-width: thin;
+    border-color: white;
+}
+.priority {
+    border-style: solid;
+    border-width: thin;
+    border-color: white;
+}
