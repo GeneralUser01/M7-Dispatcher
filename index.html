@@ -1,0 +1,147 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dispatcher</title>
+    <link rel="stylesheet" href="dispatcher.css">
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+</head>
+<body>
+    <div class="row">
+        <div class="column" style="align-self: center; font-size: 1vw; position: absolute;">
+            <input type="number">
+            <button id="btn-workload">Change workload/cycle</button>
+        </div>
+    <h1>Batch</h1>
+    </div>
+    <div class="column">
+        <div class="row">
+            <input class="content-width-spacing" id="cpu-1-input" type="text" placeholder="X Y Z or X,Y,Z">
+            <input class="content-width-spacing" id="cpu-2-input" type="text" placeholder="X Y Z or X,Y,Z">
+            <input class="content-width-spacing" id="cpu-3-input" type="text" placeholder="X Y Z or X,Y,Z">
+        </div>
+        <button id="btn-dispatch">Dispatch</button>
+        <div class="row">
+            <div class="column content-width-spacing">
+                <span id="cpu-1">CPU 1</span> <br>
+                <span id="current-status">Available/Busy</span> <br>
+                <label>Current queue</label>
+                <div class="row">
+                    <label class="content-width-spacing name-space">Process name</label>
+                    <label class="content-width-spacing">Task time</label>
+                    <label class="content-width-spacing">Priority</label>                    
+                </div>
+                <div class="row">
+                    <span class="name content-width-spacing">Example one</span>
+                    <span class="time content-width-spacing">250</span>
+                    <span class="priority content-width-spacing">1</span>
+                </div>
+                <div class="row">
+                    <span class="name content-width-spacing">Example two</span>
+                    <span class="time content-width-spacing">450</span>
+                    <span class="priority content-width-spacing">2</span>
+                </div>
+                <div class="row">
+                    <span class="name content-width-spacing">Example three</span>
+                    <span class="time content-width-spacing">100</span>
+                    <span class="priority content-width-spacing">3</span>
+                </div>
+                <canvas id="myChart" width="400" height="400"></canvas>
+<script>
+const ctx = document.getElementById('myChart').getContext('2d');
+const myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+
+            </div>
+            <div class="split-line">
+            </div>
+            <div class="column content-width-spacing">
+                <span id="cpu-2">CPU 2</span> <br>
+                <span id="current-status">Available/Busy</span> <br>
+                <label>Current queue</label>
+                <div class="row">
+                    <label class="content-width-spacing name-space">Process name</label>
+                    <label class="content-width-spacing">Task time</label>
+                    <label class="content-width-spacing">Priority</label>                    
+                </div>
+                <div class="row">
+                    <span class="name content-width-spacing">Example four</span>
+                    <span class="time content-width-spacing">550</span>
+                    <span class="priority content-width-spacing">2</span>
+                </div>
+                <div class="row">
+                    <span class="name content-width-spacing">Example five</span>
+                    <span class="time content-width-spacing">750</span>
+                    <span class="priority content-width-spacing">1</span>
+                </div>
+                <div class="row">
+                    <span class="name content-width-spacing">Example six</span>
+                    <span class="time content-width-spacing">200</span>
+                    <span class="priority content-width-spacing">2</span>
+                </div>
+            </div>
+            <div class="split-line">
+            </div>
+            <div class="column content-width-spacing">
+                <span id="cpu-3">CPU 3</span> <br>
+                <span id="current-status">Available/Busy</span> <br>
+                <label>Current queue</label>
+                <div class="row">
+                    <label class="content-width-spacing name-space">Process name</label>
+                    <label class="content-width-spacing">Task time</label>
+                    <label class="content-width-spacing">Priority</label>                    
+                </div>
+                <div class="row">
+                    <span class="name content-width-spacing">Example seven</span>
+                    <span class="time content-width-spacing">90</span>
+                    <span class="priority content-width-spacing">3</span>
+                </div>
+                <div class="row">
+                    <span class="name content-width-spacing">Example eight</span>
+                    <span class="time content-width-spacing">315</span>
+                    <span class="priority content-width-spacing">2</span>
+                </div>
+                <div class="row">
+                    <span class="name content-width-spacing">Example nine</span>
+                    <span class="time content-width-spacing">108</span>
+                    <span class="priority content-width-spacing">1</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
