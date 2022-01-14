@@ -1,9 +1,10 @@
 const dispatchButton = document.getElementById('btn-dispatch');
 const workloadButton = document.getElementById('btn-workload');
 
-const cpu1Input = document.getElementById('cpu-1-input');
-const cpu2Input = document.getElementById('cpu-2-input');
-const cpu3Input = document.getElementById('cpu-3-input');
+const cpuInputAll = document.getElementById('cpu-input-all');
+// const cpu1Input = document.getElementById('cpu-1-input');
+// const cpu2Input = document.getElementById('cpu-2-input');
+// const cpu3Input = document.getElementById('cpu-3-input');
 
 
 
@@ -63,3 +64,22 @@ class CPU3 {
         // metod3
     }
 }
+
+
+function dispatcher() {
+
+}
+
+function scheduler() {
+    // let cpu1 = new CPU1();
+    // let cpu2 = new CPU2();
+    // let cpu3 = new CPU3();
+
+    // cpu1.queue;
+
+    // cpu2.queue;
+
+    // cpu3.work(100);
+    // console.log(cpu3.work(100));
+}
+setInterval(scheduler, 100);
