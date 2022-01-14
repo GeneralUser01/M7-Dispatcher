@@ -31,6 +31,10 @@ button {
     border-top-width: thin;
 }
 
+#cpu-input-all {
+    width: 100%;
+}
+
 #btn-dispatch {
     font-size: 1.5vw;
 }
@@ -55,6 +59,9 @@ button {
 
 .name-space {
     width: 65%;
+}
+.priority-space {
+    width: 18%;
 }
 
 h1 {
@@ -113,4 +120,5 @@ label {
     border-style: solid;
     border-width: thin;
     border-color: white;
+    width: 18%;
 }
