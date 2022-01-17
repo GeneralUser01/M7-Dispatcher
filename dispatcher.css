@@ -10,8 +10,9 @@ body, input {
 input {
     border-bottom-width: thin;
     border-radius: 0;
+    border-color: rgb(226, 226, 226);
 }
-input[type="number"] {    
+input[type="number"] {
     appearance: textfield;
 }
 input[type="text"] {
@@ -29,6 +30,10 @@ input, button {
 }
 button {
     border-top-width: thin;
+    border-color: rgb(150, 150, 150);
+}
+button:hover {
+    cursor: pointer;
 }
 
 #cpu-input-all {
@@ -59,9 +64,11 @@ button {
 
 .name-space {
     width: 65%;
+    max-width: 65%;
 }
 .priority-space {
     width: 18%;
+    max-width: 18%;
 }
 
 h1 {
@@ -70,9 +77,52 @@ h1 {
     background-clip: text;
     color: transparent;
 
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: auto;
+    /* margin-left: auto;
+    margin-right: auto; */
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.top-row-corner {
+    align-self: center;
+    font-size: 1vw;
+    width: 17vw;
+}
+
+#message {
+    width: 100%;
+
+    background: linear-gradient(#262626,#eaeaea,#262626);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.busy {
+    /* background: linear-gradient(rgb(255, 0, 0),rgb(182, 0, 0),rgb(255, 0, 0));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; */
+
+    color: rgb(255, 0, 0);
+    background-color: rgba(0, 0, 0, 0.8);
+    border-style: solid;
+    border-color: rgba(255, 0, 0, 0.8);
+    margin-bottom: 0.4em;
+    text-align: center;
+}
+.current-status:not(.busy) {
+    /* background: linear-gradient(rgb(0, 255, 0),rgb(0, 182, 0),rgb(0, 255, 0));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; */
+
+    color: rgb(0, 255, 0);
+    background-color: rgba(0, 0, 0, 0.8);
+    border-style: solid;
+    border-color: rgba(0, 255, 0, 0.8);
+    margin-bottom: 0.4em;
+    text-align: center;
 }
 
 label {
@@ -80,7 +130,7 @@ label {
 }
 
 .split-line {
-    border-style: solid;
+    border-style: inset;
     border-width: thin;
     border-color: rgb(150, 150, 150);
     height: 84vh;
@@ -90,7 +140,11 @@ label {
 }
 
 #cpu-1 {
-    color: rgb(200, 25, 30);
+    /* color: rgb(200, 25, 30); */
+    background: linear-gradient(rgb(180, 42, 21), rgb(250, 60, 20), rgb(180, 30, 7));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 #cpu-2 {
     /*color: rgb(125, 79, 255);*/
@@ -108,17 +162,17 @@ label {
 .name {
     border-style: solid;
     border-width: thin;
-    border-color: white; 
+    border-color: rgb(255, 255, 255);
     width: 65%;
 }
 .time {
     border-style: solid;
     border-width: thin;
-    border-color: white;
+    border-color: rgb(255, 255, 255);
 }
 .priority {
     border-style: solid;
     border-width: thin;
-    border-color: white;
+    border-color: rgb(255, 255, 255);
     width: 18%;
 }
