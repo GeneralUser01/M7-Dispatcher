@@ -3,8 +3,32 @@ html {
     color: rgb(255, 255, 255);
 }
 
+body {
+    height: 100%;
+    overflow: hidden;
+}
+
 body, input {
     text-align: center;
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(55, 0, 255) rgb(0, 14, 77);
+}
+
+*::-webkit-scrollbar {
+    width: 0.7vw;
+    height: 1vh;
+}
+*::-webkit-scrollbar-track {
+    background: rgb(0, 14, 77);
+}
+*::-webkit-scrollbar-thumb {
+    background: rgb(55, 0, 255);
+}
+*::-webkit-scrollbar-thumb:hover {
+    background: rgb(74, 37, 255);
 }
 
 input {
@@ -14,6 +38,7 @@ input {
 }
 input[type="number"] {
     appearance: textfield;
+    outline: none;
 }
 input[type="text"] {
     font-size: 1.2vw;
@@ -27,6 +52,11 @@ input, button {
 }
 ::placeholder {
     opacity: 0.85;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 button {
     border-top-width: thin;
@@ -42,9 +72,6 @@ button:hover {
 
 #btn-dispatch {
     font-size: 1.5vw;
-}
-#btn-workload {
-    font-size: 1.15vw;
 }
 
 .row {
@@ -98,7 +125,7 @@ h1 {
     color: transparent;
 }
 
-.busy {
+.processing {
     /* background: linear-gradient(rgb(255, 0, 0),rgb(182, 0, 0),rgb(255, 0, 0));
     -webkit-background-clip: text;
     background-clip: text;
@@ -111,7 +138,7 @@ h1 {
     margin-bottom: 0.4em;
     text-align: center;
 }
-.current-status:not(.busy) {
+.current-status:not(.processing) {
     /* background: linear-gradient(rgb(0, 255, 0),rgb(0, 182, 0),rgb(0, 255, 0));
     -webkit-background-clip: text;
     background-clip: text;
@@ -175,4 +202,38 @@ label {
     border-width: thin;
     border-color: rgb(255, 255, 255);
     width: 18%;
+}
+
+.processes {
+    min-height: 10.5em;
+    max-height: 10.5em;
+    /* min-height: 26%;
+    max-height: 26%; */
+    overflow: auto;
+    float: none;
+}
+@-moz-document url-prefix() {
+    .processes {
+        overflow: scroll;        
+    }
+}
+
+.bar-chart-size {
+    height: 5vh;
+    width: 8vw;
+}
+.pie-chart-container {
+    position: relative;
+    width: 14vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+@media (min-width: 1401px) {
+    .pie-chart-container {
+        width: 10vw;
+    }
+}
+.all-charts-container {
+    max-height: 100%;
+    overflow: auto;
 }
