@@ -107,6 +107,11 @@ function buildPieChart(ctx) {
             }],
         },
         options: {
+            plugins: {
+                legend: {
+                    display: false,
+                },
+            },
             maintainAspectRatio: true,
             scales: {
                 y: {
@@ -674,24 +679,24 @@ function scheduler() {
     if (isCpu1Busy) {
         updateChartsAndListForCpu('cpu1');
     }
-    cpu1Busy.textContent = isCpu1Busy ? 'Busy' : 'Available';
-    cpu1Busy.classList.toggle('busy', isCpu1Busy);
+    cpu1Busy.textContent = isCpu1Busy ? 'Processing' : 'Available';
+    cpu1Busy.classList.toggle('Processing', isCpu1Busy);
 
 
     const isCpu2Busy = cpus.cpu2.work(workPerCycle) !== workPerCycle;
     if (isCpu2Busy) {
         updateChartsAndListForCpu('cpu2');
     }
-    cpu2Busy.textContent = isCpu2Busy ? 'Busy' : 'Available';
-    cpu2Busy.classList.toggle('busy', isCpu2Busy);
+    cpu2Busy.textContent = isCpu2Busy ? 'Processing' : 'Available';
+    cpu2Busy.classList.toggle('Processing', isCpu2Busy);
 
 
     const isCpu3Busy = cpus.cpu3.work(workPerCycle) !== workPerCycle;
     if (isCpu3Busy) {
         updateChartsAndListForCpu('cpu3');
     }
-    cpu3Busy.textContent = isCpu3Busy ? 'Busy' : 'Available';
-    cpu3Busy.classList.toggle('busy', isCpu3Busy);
+    cpu3Busy.textContent = isCpu3Busy ? 'Processing' : 'Available';
+    cpu3Busy.classList.toggle('Processing', isCpu3Busy);
 }
 setInterval(scheduler, 100);
 
