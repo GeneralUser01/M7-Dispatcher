@@ -98,6 +98,11 @@ button:hover {
     max-width: 18%;
 }
 
+.header-container {
+    align-self: center;
+    font-size: 1vw;
+    width: 100%;
+}
 h1 {
     background: linear-gradient(#262626,#eaeaea,#262626);
     -webkit-background-clip: text;
@@ -116,6 +121,9 @@ h1 {
     width: 17vw;
 }
 
+.message-container {
+    min-height: 2.3vh;
+}
 #message {
     width: 100%;
 
