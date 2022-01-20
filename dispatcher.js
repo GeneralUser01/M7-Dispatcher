@@ -162,8 +162,10 @@ workloadButton.addEventListener('click', function () {
     }
     if (!isNaN(value) && value >= 0) {
         workPerCycle = value;
+        message.textContent = '';
     } else {
         console.warn("Can't apply workload value: ", workloadInput.value);
+        message.textContent = "Can't apply workload value: " + workloadInput.value;
     }
 });
 connectEnterKey([workloadInput], function() {
@@ -174,6 +176,7 @@ randomTasksButton.addEventListener('click', function () {
     const count = parseInt(randomTasksInput.value);
     if (isNaN(count) || count < 1) {
         console.warn('No tasks generated since the random tasks count was: ', randomTasksInput.value);
+        message.textContent = 'No tasks generated since the random tasks count was: ' + randomTasksInput.value;
         return;
     }
     const chooseRandom = function (array) {
@@ -445,7 +448,6 @@ function dispatcher() {
                 for (const cpu of cpusToAddProcessTo) {
                     cpu.add(new Process(name, execTime, priority));
                 }
-                message.textContent = '';
             } catch (error) {
                 console.error('Failed to add process to cpus: ', error);
                 message.textContent = 'Failed to add process to cpus: ' + error;
@@ -676,24 +678,34 @@ function scheduler() {
 
 
     const isCpu1Busy = cpus.cpu1.work(workPerCycle) !== workPerCycle;
+    const isCpu2Busy = cpus.cpu2.work(workPerCycle) !== workPerCycle;
+    const isCpu3Busy = cpus.cpu3.work(workPerCycle) !== workPerCycle;
+    
+    if (isCpu1Busy || isCpu2Busy || isCpu3Busy) {
+         message.textContent = 'Remaining tasks:\xa0\xa0\xa0\xa0\xa0Total: ' + document.querySelectorAll('.processes .name').length + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0';
+    } else if (!isCpu1Busy && !isCpu2Busy && !isCpu3Busy && message.textContent.startsWith('Remaining')) {
+        message.textContent = '';
+    }
+
     if (isCpu1Busy) {
         updateChartsAndListForCpu('cpu1');
+        message.textContent += 'CPU 1: ' + cpus.cpu1.list.length + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0';
     }
     cpu1Busy.textContent = isCpu1Busy ? 'Processing' : 'Available';
     cpu1Busy.classList.toggle('Processing', isCpu1Busy);
 
 
-    const isCpu2Busy = cpus.cpu2.work(workPerCycle) !== workPerCycle;
     if (isCpu2Busy) {
         updateChartsAndListForCpu('cpu2');
+        message.textContent += 'CPU 2: ' + document.querySelectorAll('#cpu-2-area .processes .name').length + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0';
     }
     cpu2Busy.textContent = isCpu2Busy ? 'Processing' : 'Available';
     cpu2Busy.classList.toggle('Processing', isCpu2Busy);
 
 
-    const isCpu3Busy = cpus.cpu3.work(workPerCycle) !== workPerCycle;
     if (isCpu3Busy) {
         updateChartsAndListForCpu('cpu3');
+        message.textContent += 'CPU 3: ' + document.querySelectorAll('#cpu-3-area .processes .name').length;
     }
     cpu3Busy.textContent = isCpu3Busy ? 'Processing' : 'Available';
     cpu3Busy.classList.toggle('Processing', isCpu3Busy);
