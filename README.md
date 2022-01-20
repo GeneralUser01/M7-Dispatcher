@@ -19,10 +19,10 @@ This expands on the concept of CPU 2 by not only working on multiple tasks simul
 
 # Miscellaneous features
 ## Changing workload/cycle
-The value of the workload determines the simulation speed, thus the default is at 100. A higher value could be useful for seeing quicker change on longer lists and a lower value for partially or entirely bringing the program to a halt.
+The value of the workload determines the simulation speed, thus the default is at 100. A higher value could be useful for seeing faster depletion of longer lists and a lower value for partially or entirely bringing the application to a halt.
 
 ## Adding random tasks
-Likely to be considered the most convenient feature, the ability to add a plethera of random tasks hastily demonstrates just what this program can do.
+Likely to be considered the most convenient feature, the ability to add any number of random tasks hastily demonstrates just what this program can do.
 
 ## Sending tasks to a CPU
-Each task is composed of three variables, that being a process name, task time and priority. While only CPU 3 uses the priority property, it's included in all tasks for the sake of comparison. 
+Each task is composed of three variables, that being a process name, task time and priority. While only CPU 3 uses the priority property, it's included in all tasks for the sake of comparison. As explained by a placeholder, the data is separated with either commas or spaces equally.
