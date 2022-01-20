@@ -50,14 +50,26 @@ input, button {
     color: transparent;
     caret-color: rgb(185, 185, 185);
 }
+
 ::placeholder {
     opacity: 0.85;
+
+    background: linear-gradient(#262626,#eaeaea,#262626);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+@-moz-document url-prefix() {
+    ::placeholder {
+        background: initial;
+    }    
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
 button {
     border-top-width: thin;
     border-color: rgb(150, 150, 150);
@@ -122,10 +134,11 @@ h1 {
 }
 
 .message-container {
-    min-height: 2.3vh;
+    min-height: 2.5vh;
 }
 #message {
     width: 100%;
+    font-size: 1.08em;
 
     background: linear-gradient(#262626,#eaeaea,#262626);
     -webkit-background-clip: text;
@@ -168,7 +181,7 @@ label {
     border-style: inset;
     border-width: thin;
     border-color: rgb(150, 150, 150);
-    height: 84vh;
+    height: 100vh;
 
     margin-left: 0.7%;
     margin-right: 0.7%;
@@ -236,12 +249,21 @@ label {
     margin-left: auto;
     margin-right: auto;
 }
-@media (min-width: 1401px) {
+@media (max-width: 900px) {
+    .pie-chart-container {
+        width: 18vw;
+    }
+    label {
+        font-size: 1.17vw;
+    }
+}
+@media (min-width: 1401px) and (min-height: 500px) {
     .pie-chart-container {
         width: 10vw;
     }
 }
-.all-charts-container {
-    max-height: 100%;
-    overflow: auto;
+@media (min-width: 1401px) and (min-height: 800px) {
+    .pie-chart-container {
+        width: 16vw;
+    }
 }
