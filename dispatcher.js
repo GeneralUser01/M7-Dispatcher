@@ -162,7 +162,9 @@ workloadButton.addEventListener('click', function () {
     }
     if (!isNaN(value) && value >= 0) {
         workPerCycle = value;
-        message.textContent = '';
+        if (!message.textContent.startsWith('Remaining')) {
+            message.textContent = '';
+        }
     } else {
         console.warn("Can't apply workload value: ", workloadInput.value);
         message.textContent = "Can't apply workload value: " + workloadInput.value;
