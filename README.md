@@ -1,7 +1,7 @@
 <!-- To preview, one can in VS Code usually use the shortcut ctrl + shift + v -->
 # <img src="header.jpg">
 # Introductory description
-Dispatcher is a web application which displays multiple methods of managing tasks, from simpler to more advanced technics in numeric order. These are displayed side-by-side with each having a table, a bar chart and a pie chart all showing live the progress made on their tasks until completion, as indicted by the status sign of any given CPU, the term representing any certain method. 
+Dispatcher is a web application which displays multiple methods of managing tasks, from simpler to more advanced technics in numeric order. These are displayed side-by-side with each having a table, a bar chart and a pie chart all showing live the progress made on their tasks until completion, as indicted by the status sign of any given CPU, the term representing any certain method.
 
 <br>
 
@@ -23,6 +23,9 @@ The value of the workload determines the simulation speed, thus the default is a
 
 ## Adding random tasks
 Likely to be considered the most convenient feature, the ability to add any number of random tasks hastily demonstrates just what this program can do.
+
+## Copying a queue to clipboard
+This would be a quite self-explanatory feature, useful for acquiring data to the various CPU input fields.
 
 ## Sending tasks to a CPU
 Each task is composed of three variables, that being a process name, task time and priority. While only CPU 3 uses the priority property, it's included in all tasks for the sake of comparison. As explained by a placeholder, the data is separated with either commas or spaces equally.
