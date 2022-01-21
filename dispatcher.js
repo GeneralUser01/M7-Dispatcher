@@ -2,6 +2,10 @@ const dispatchButton = document.getElementById('btn-dispatch');
 const workloadButton = document.getElementById('btn-workload');
 const randomTasksButton = document.getElementById('btn-random-tasks');
 
+const copyQueue1Button = document.getElementById('btn-copy-queue-cpu-1');
+const copyQueue2Button = document.getElementById('btn-copy-queue-cpu-2');
+const copyQueue3Button = document.getElementById('btn-copy-queue-cpu-3');
+
 const workloadInput = document.getElementById('workload');
 const randomTasksInput = document.getElementById('random-tasks');
 
@@ -158,7 +162,7 @@ connectEnterKey(Array.from(document.querySelectorAll('.input-area input')), func
 workloadButton.addEventListener('click', function () {
     let value = workloadInput.value;
     if (typeof value === 'string') {
-        value = parseInt(value);
+        value = safeParseInt(value);
     }
     if (!isNaN(value) && value >= 0) {
         workPerCycle = value;
@@ -175,7 +179,7 @@ connectEnterKey([workloadInput], function() {
 });
 
 randomTasksButton.addEventListener('click', function () {
-    const count = parseInt(randomTasksInput.value);
+    const count = safeParseInt(randomTasksInput.value);
     if (isNaN(count) || count < 1) {
         console.warn('No tasks generated since the random tasks count was: ', randomTasksInput.value);
         message.textContent = 'No tasks generated since the random tasks count was: ' + randomTasksInput.value;
@@ -203,11 +207,41 @@ connectEnterKey([randomTasksInput], function() {
     randomTasksButton.click();
 });
 
+for (const copyButton of [copyQueue1Button, copyQueue2Button, copyQueue3Button]) {
+    copyButton.addEventListener('click', function () {
+        let queueToText = '';
+        for (const entry of copyButton.parentElement.parentElement.querySelectorAll('.processes > .row')) {
+            const isFirst = queueToText === '';
+            if (!isFirst) {
+                // separator between list entries:
+                queueToText += '\n';
+            }
+
+            const name = entry.querySelector('.name').textContent;
+            const time = entry.querySelector('.time').textContent;
+            const priority = entry.querySelector('.priority').textContent;
+            queueToText += [name, time, priority].join(',');
+        }
+        console.log(queueToText);
+        navigator.clipboard.writeText(queueToText);
+    })
+}
+
+
+
+function safeParseInt(text) {
+    const result = parseInt(text);
+    if (isNaN(result)) return result;
+    // parseInt('600kk20') returns 600 so check that we parsed everything:
+    if (String(result) !== text) return NaN;
+    return result;
+}
+
 
 class Process {
     constructor(name, execTime, priority) {
         if (typeof priority === 'string') {
-            const parsed = parseInt(priority);
+            const parsed = safeParseInt(priority);
             if (isNaN(parsed)) {
                 throw new Error("can't parse priority as a number: " + priority);
             }
@@ -221,7 +255,7 @@ class Process {
         }
 
         if (typeof execTime === 'string') {
-            const parsed = parseInt(execTime);
+            const parsed = safeParseInt(execTime);
             if (isNaN(parsed)) {
                 throw new Error("can't parse execution time as a number: " + execTime);
             }
@@ -682,10 +716,10 @@ function scheduler() {
     const isCpu1Busy = cpus.cpu1.work(workPerCycle) !== workPerCycle;
     const isCpu2Busy = cpus.cpu2.work(workPerCycle) !== workPerCycle;
     const isCpu3Busy = cpus.cpu3.work(workPerCycle) !== workPerCycle;
-    
+
     if (isCpu1Busy || isCpu2Busy || isCpu3Busy) {
          message.textContent = 'Remaining tasks:\xa0\xa0\xa0\xa0\xa0Total: ' + document.querySelectorAll('.processes .name').length + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0';
-    } else if (!isCpu1Busy && !isCpu2Busy && !isCpu3Busy && message.textContent.startsWith('Remaining')) {
+    } else if (!isCpu1Busy && !isCpu2Busy && !isCpu3Busy && message.textContent.startsWith('Remaining') && workPerCycle > 0) {
         message.textContent = '';
     }
 
@@ -694,7 +728,7 @@ function scheduler() {
         message.textContent += 'CPU 1: ' + cpus.cpu1.list.length + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0';
     }
     cpu1Busy.textContent = isCpu1Busy ? 'Processing' : 'Available';
-    cpu1Busy.classList.toggle('Processing', isCpu1Busy);
+    cpu1Busy.classList.toggle('processing', isCpu1Busy);
 
 
     if (isCpu2Busy) {
@@ -702,7 +736,7 @@ function scheduler() {
         message.textContent += 'CPU 2: ' + document.querySelectorAll('#cpu-2-area .processes .name').length + '\xa0\xa0\xa0\xa0\xa0\xa0\xa0';
     }
     cpu2Busy.textContent = isCpu2Busy ? 'Processing' : 'Available';
-    cpu2Busy.classList.toggle('Processing', isCpu2Busy);
+    cpu2Busy.classList.toggle('processing', isCpu2Busy);
 
 
     if (isCpu3Busy) {
@@ -710,7 +744,7 @@ function scheduler() {
         message.textContent += 'CPU 3: ' + document.querySelectorAll('#cpu-3-area .processes .name').length;
     }
     cpu3Busy.textContent = isCpu3Busy ? 'Processing' : 'Available';
-    cpu3Busy.classList.toggle('Processing', isCpu3Busy);
+    cpu3Busy.classList.toggle('processing', isCpu3Busy);
 }
 setInterval(scheduler, 100);
 
