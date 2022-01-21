@@ -62,7 +62,7 @@ input, button {
 @-moz-document url-prefix() {
     ::placeholder {
         background: initial;
-    }    
+    }
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -78,12 +78,12 @@ button:hover {
     cursor: pointer;
 }
 
-#cpu-input-all {
-    width: 100%;
-}
-
 #btn-dispatch {
     font-size: 1.5vw;
+}
+
+.copy-button-spacing {
+    margin-left: auto;
 }
 
 .row {
