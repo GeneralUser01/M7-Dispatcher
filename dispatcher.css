@@ -42,6 +42,11 @@ input[type="number"] {
 }
 input[type="text"] {
     font-size: 1.2vw;
+
+    background: transparent;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    color: rgb(185, 185, 185);
 }
 input, button {
     background: linear-gradient(#262626,#eaeaea,#262626);
@@ -60,6 +65,13 @@ input, button {
     color: transparent;
 }
 @-moz-document url-prefix() {
+    :root input[type="text"], button {
+        background: linear-gradient(#262626,#eaeaea,#262626);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        caret-color: rgb(185, 185, 185);
+    }
     ::placeholder {
         background: initial;
     }
@@ -77,6 +89,9 @@ button {
 button:hover {
     cursor: pointer;
 }
+button:disabled {
+    cursor: default;
+}
 
 #btn-dispatch {
     font-size: 1.5vw;
@@ -84,6 +99,21 @@ button:hover {
 
 .copy-button-spacing {
     margin-left: auto;
+}
+.copy-button {
+    padding-top: 0;
+    padding-bottom: 0;
+
+    transition: 0.7s;
+}
+.copy-button[disabled] {
+    opacity: 0;
+}
+.checkShow {
+    visibility: visible;
+}
+.check:not(.checkShow) {
+    visibility: hidden;
 }
 
 .row {
@@ -226,18 +256,34 @@ label {
 }
 
 .processes {
-    min-height: 10.5em;
-    max-height: 10.5em;
     /* min-height: 26%;
     max-height: 26%; */
+    min-height: 10.5em;
+    max-height: 10.5em;
     overflow: auto;
     float: none;
 }
 @-moz-document url-prefix() {
     .processes {
-        overflow: scroll;        
+        overflow: scroll;
+    }
+    .row label {
+        margin-right: 0.4vw;
     }
 }
+
+/* .row .content-width-spacing, label {
+    background: linear-gradient(#9e9e9e,#eaeaea,#9e9e9e);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+} */
+/* .processes, label {
+    background: linear-gradient(#9e9e9e,#eaeaea,#9e9e9e);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+} */
 
 .bar-chart-size {
     height: 5vh;
@@ -255,6 +301,9 @@ label {
     }
     label {
         font-size: 1.17vw;
+    }
+    .copy-button {
+        font-size: 1vw;
     }
 }
 @media (min-width: 1401px) and (min-height: 500px) {
