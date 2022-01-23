@@ -32,6 +32,11 @@ const cpuProcessLists = {
     cpu2: document.querySelector('#cpu-2-area .processes'),
     cpu3: document.querySelector('#cpu-3-area .processes'),
 };
+const cpuCopyButtons = {
+    cpu1: copyQueue1Button,
+    cpu2: copyQueue2Button,
+    cpu3: copyQueue3Button,
+};
 
 const chartContexts = {
     cpu1: {
@@ -208,9 +213,12 @@ connectEnterKey([randomTasksInput], function() {
 });
 
 for (const copyButton of [copyQueue1Button, copyQueue2Button, copyQueue3Button]) {
+    // One timeout id for each button:
+    let lastTimeoutId = null;
+
     copyButton.addEventListener('click', function () {
         let queueToText = '';
-        for (const entry of copyButton.parentElement.parentElement.querySelectorAll('.processes > .row')) {
+        for (const entry of copyButton.parentElement.parentElement.parentElement.querySelectorAll('.processes > .row')) {
             const isFirst = queueToText === '';
             if (!isFirst) {
                 // separator between list entries:
@@ -222,8 +230,29 @@ for (const copyButton of [copyQueue1Button, copyQueue2Button, copyQueue3Button])
             const priority = entry.querySelector('.priority').textContent;
             queueToText += [name, time, priority].join(',');
         }
-        console.log(queueToText);
-        navigator.clipboard.writeText(queueToText);
+        if (queueToText !== "") {
+            navigator.clipboard.writeText(queueToText);
+
+            const checkImg = copyButton.parentElement.querySelector('.check');
+
+            // Restart animation:
+            const src = checkImg.src;
+            checkImg.src = '';
+            checkImg.src = src;
+
+            checkImg.classList.add('checkShow');
+
+            // Remove check-mark after animation completes:
+            if (lastTimeoutId !== null) {
+                // Remove old timeout callback so that we don't remove it too early:
+                clearTimeout(lastTimeoutId);
+                lastTimeoutId = null;
+            }
+            lastTimeoutId = setTimeout(function() {
+                lastTimeoutId = null;
+                checkImg.classList.remove('checkShow');
+            }, 1800);
+        }
     })
 }
 
@@ -519,6 +548,7 @@ function updateChartsAndListForCpu(cpuKey) {
     const cpu = cpus[cpuKey];
 
     const list = cpuProcessLists[cpuKey];
+    let hasTasks = false;
     {
         const children = list.children;
         let index = 0;
@@ -549,6 +579,8 @@ function updateChartsAndListForCpu(cpuKey) {
             return div;
         };
         cpu.forEach(function (item) {
+            hasTasks = true;
+
             while (children.length > index && children[index].querySelector('.name').textContent !== item.name) {
                 // Incorrect name label => the dom node's process must have been removed => so remove the dom node:
                 list.removeChild(children[index]);
@@ -570,6 +602,11 @@ function updateChartsAndListForCpu(cpuKey) {
             list.removeChild(children[index]);
         }
     }
+
+
+    const copyButton = cpuCopyButtons[cpuKey];
+    copyButton.disabled = !hasTasks;
+
 
     const cpuCharts = charts[cpuKey];
     const barChart = cpuCharts.bar;
@@ -701,18 +738,6 @@ function updateChartsAndListForCpu(cpuKey) {
 
 let workPerCycle = 100;
 function scheduler() {
-    /*
-    for (const cpuKey of Object.keys(cpus)) {
-        const timeLeftAfterCompletingTasks = cpus[cpuKey].work(workPerCycle);
-        const isBusy = timeLeftAfterCompletingTasks !== workPerCycle;
-        if (isBusy) {
-            // Did some work on queued tasks, so update the charts for this cpu:
-            updateChartsForCpu(cpuKey);
-        }
-    }
-    */
-
-
     const isCpu1Busy = cpus.cpu1.work(workPerCycle) !== workPerCycle;
     const isCpu2Busy = cpus.cpu2.work(workPerCycle) !== workPerCycle;
     const isCpu3Busy = cpus.cpu3.work(workPerCycle) !== workPerCycle;
