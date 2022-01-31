@@ -231,7 +231,16 @@ for (const copyButton of [copyQueue1Button, copyQueue2Button, copyQueue3Button])
             queueToText += [name, time, priority].join(',');
         }
         if (queueToText !== "") {
-            navigator.clipboard.writeText(queueToText);
+            if (navigator.clipboard !== undefined) {
+            	navigator.clipboard.writeText(queueToText);
+            } else {
+                const queueToTextarea = document.createElement('textarea');
+                queueToTextarea.value = queueToText;
+                document.body.appendChild(queueToTextarea);
+                queueToTextarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(queueToTextarea);
+            }
 
             const checkImg = copyButton.parentElement.querySelector('.check');
 
