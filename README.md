@@ -3,6 +3,8 @@
 # Introductory description
 Dispatcher is a web application which displays multiple methods of managing tasks, from simpler to more advanced technics in numeric order. These are displayed side-by-side with each having a table, a bar chart and a pie chart all showing live the progress made on their tasks until completion, as indicted by the status sign of any given CPU, the term representing any certain method.
 
+View the site at [GitHub Pages](https://generaluser01.github.io/M7-Dispatcher/).
+
 <br>
 
 # The task processing methods
